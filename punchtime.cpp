@@ -1,0 +1,121 @@
+/*
+Punchtime - C++ application that will determine your time out schedule based on your time in.
+
+Usage:
+$ punchtime 5:46 # default time format 24H
+Time-in: 5:46 AM
+Time-out: 2:46 PM
+
+
+TODO: 
+1. get user input
+2. parse user input, get minutes and seconds
+3. add defualt 9 working hours
+4. print result
+
+*/
+
+#include <iostream>
+#include <ctime>
+#include <ratio>
+#include <chrono>
+#include <string>
+#include <getopt.h>
+#include <stdlib.h>
+#include <cstring>
+
+using namespace std;
+
+
+void display_current_time(void) {
+
+    // current date/time on current system
+    time_t now = time(0);
+
+    // convert now to string form
+    char* dt = ctime(&now);
+
+    tm *local_time = localtime(&now);
+
+    cout << "Now: " << dt;
+    cout << "Hour: " << local_time->tm_hour + 9 << endl; // result is 30, fix this
+    cout << "Minutes: " << local_time->tm_min << endl;
+}
+
+
+void display_current_time2(void) {
+
+    using std::chrono::system_clock;
+
+    system_clock::time_point today = system_clock::now();
+
+    std::time_t tt;
+
+    tt = system_clock::to_time_t(today);
+    // print time today
+    std::cout << "today is " << ctime(&tt);
+    
+    display_current_time();    
+
+}
+
+
+
+
+int main(int argc, char **argv)
+{
+    int opt;
+    int colon_pos;
+    int hour_int;
+    int min_int;
+    int out_hour_int;
+    int out_min_int;
+    string input;
+    string hour_str;
+    string min_str;
+
+    while ((opt = getopt(argc, argv, "-v")) != -1)
+    {
+        switch (opt)
+        {
+            case 1:
+
+                // get user input
+                input = optarg;
+                            
+                // parse input, get hours and minutes
+                colon_pos = input.find(":");                            // find colon
+                hour_str = input.substr(0, colon_pos);                  // get hour
+                min_str = input.substr(colon_pos + 1, input.length());  // get minutes    
+
+                // printf("input_len: %ld\n", input.length()); 
+                // printf("colon_pos: %d\n", colon_pos);
+                // cout << "hours: " << hour_str << endl;
+                // cout << "minutes: " << min<< endl
+                // printf("hours: %d\n", min_str);
+
+                // [] TODO: convert hour and minutes to digits
+                hour_int = stoi(hour_str);
+                min_int = stoi(min_str);    
+
+                // [] TODO: add default working hours (9)
+                out_hour_int = hour_int + 9;
+                out_min_int = min_int;
+
+                // [] TODO: display result
+                cout << "Time-in: " << hour_int << ":" << min_int << endl;
+                cout << "Time-out: " << out_hour_int << ":" << out_min_int << endl;
+
+                break;
+            case 'v':
+                cout << "0.1.1" << endl;
+                break;
+            case '?':
+                // exit if invalid command
+                printf("unknown option\n");
+                return 1;
+        }
+    }
+
+    return 0;
+}
