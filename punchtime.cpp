@@ -81,11 +81,11 @@ int main(int argc, char **argv)
     string hour_str;
     string min_str;
 
-    while ((opt = getopt(argc, argv, "-v")) != -1)
+    while ((opt = getopt(argc, argv, ":b:o:-v")) != -1)
     {
         switch (opt)
         {
-            case 1:
+            case 1: // [] TODO: check why this is not catch
 
                 // get user input
                 input = optarg;
@@ -114,9 +114,25 @@ int main(int argc, char **argv)
                 cout << "Time-out: " << out_hour_int << ":" << out_min_int << endl;
 
                 break;
+            
+            case 'b':
+                cout << "optarg = " << optarg << endl;
+                cout << "[] TODO: compute breaktime" << endl;
+                break;
+            
+            case 'o':
+                cout << "optarg = " << optarg << endl;
+                cout << "[] TODO: compute overtime" << endl;
+                break;
+
             case 'v':
                 cout << "0.1.1" << endl;
                 break;
+            
+            case ':':
+                cout << "'" << opt << "," <<  " requires a value" << endl;
+                break;
+
             case '?':
                 // exit if invalid command
                 printf("unknown option\n");
