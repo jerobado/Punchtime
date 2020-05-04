@@ -71,6 +71,7 @@ void display_current_time2(void) {
 
 int main(int argc, char **argv)
 {
+    int index;
     int opt;
     int colon_pos;
     int hour_int;
@@ -85,21 +86,15 @@ int main(int argc, char **argv)
     {
         switch (opt)
         {
-            case 1: // [] TODO: check why this is not catch
+            case 1: // [] TODO: transfer as non-optional argument
 
-                // get user input
+                // Get user input
                 input = optarg;
                             
-                // parse input, get hours and minutes
+                // Parse input, get hours and minutes
                 colon_pos = input.find(":");                            // find colon
                 hour_str = input.substr(0, colon_pos);                  // get hour
                 min_str = input.substr(colon_pos + 1, input.length());  // get minutes    
-
-                // printf("input_len: %ld\n", input.length()); 
-                // printf("colon_pos: %d\n", colon_pos);
-                // cout << "hours: " << hour_str << endl;
-                // cout << "minutes: " << min<< endl
-                // printf("hours: %d\n", min_str);
 
                 // Convert hour and minutes to digits
                 hour_int = stoi(hour_str);
@@ -109,7 +104,7 @@ int main(int argc, char **argv)
                 out_hour_int = hour_int + 9;
                 out_min_int = min_int;
 
-                // [] TODO: display result
+                // Display result
                 cout << "Time-in: " << hour_int << ":" << min_int << endl;
                 cout << "Time-out: " << out_hour_int << ":" << out_min_int << endl;
 
@@ -138,7 +133,13 @@ int main(int argc, char **argv)
                 printf("unknown option\n");
                 return 1;
         }
+    
     }
+
+    // Parse non-option argument here
+    for (index = optind; index < argc; index++)
+        cout << "non-option: " << argv[index] << endl;
+
 
     return 0;
 }
