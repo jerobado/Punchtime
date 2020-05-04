@@ -1,10 +1,17 @@
 /*
-Punchtime - C++ application that will determine your time out schedule based on your time in.
+Punchtime is a simple console application that can compute for your time out, breaks and overtime.
 
 Usage:
-$ punchtime 5:46 # default time format 24H
-Time-in: 5:46 AM
-Time-out: 2:46 PM
+$ punchtime 7:47    # time-in
+Time-out: 16:47
+
+$ punchtime 7:47 -b 11:00   # time-in with breaktime (-b), break is 1 hour 30 minutes
+Break until: 12:30
+Time-out: 16:47
+
+$ punctime 7:47 -b 11:00 -o 1   # time-in with breaktime and 1 hour overtime (-o)
+Break until: 12:30
+Time-out: 17:47
 
 
 TODO: 
@@ -94,11 +101,11 @@ int main(int argc, char **argv)
                 // cout << "minutes: " << min<< endl
                 // printf("hours: %d\n", min_str);
 
-                // [] TODO: convert hour and minutes to digits
+                // Convert hour and minutes to digits
                 hour_int = stoi(hour_str);
                 min_int = stoi(min_str);    
 
-                // [] TODO: add default working hours (9)
+                // Add default working hours (9)
                 out_hour_int = hour_int + 9;
                 out_min_int = min_int;
 
