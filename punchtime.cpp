@@ -72,6 +72,7 @@ void display_current_time2(void) {
 int main(int argc, char **argv)
 {
     int index;
+    int positional = 1;
     int opt;
     int colon_pos;
     int hour_int;
@@ -81,35 +82,12 @@ int main(int argc, char **argv)
     string input;
     string hour_str;
     string min_str;
-
+   
+    // Parse optional arguments
     while ((opt = getopt(argc, argv, ":b:o:-v")) != -1)
     {
         switch (opt)
-        {
-            case 1: // [] TODO: transfer as non-optional argument
-
-                // Get user input
-                input = optarg;
-                            
-                // Parse input, get hours and minutes
-                colon_pos = input.find(":");                            // find colon
-                hour_str = input.substr(0, colon_pos);                  // get hour
-                min_str = input.substr(colon_pos + 1, input.length());  // get minutes    
-
-                // Convert hour and minutes to digits
-                hour_int = stoi(hour_str);
-                min_int = stoi(min_str);    
-
-                // Add default working hours (9)
-                out_hour_int = hour_int + 9;
-                out_min_int = min_int;
-
-                // Display result
-                cout << "Time-in: " << hour_int << ":" << min_int << endl;
-                cout << "Time-out: " << out_hour_int << ":" << out_min_int << endl;
-
-                break;
-            
+        {           
             case 'b':
                 cout << "optarg = " << optarg << endl;
                 cout << "[] TODO: compute breaktime" << endl;
@@ -136,10 +114,33 @@ int main(int argc, char **argv)
     
     }
 
-    // Parse non-option argument here
+    // Parse non-option argument
     for (index = optind; index < argc; index++)
-        cout << "non-option: " << argv[index] << endl;
+    {
+        // Get user input
+        input = argv[index];   
+            
+        // Parse input, get hours and minutes
+        colon_pos = input.find(":");                            // find colon
+        hour_str = input.substr(0, colon_pos);                  // get hour
+        min_str = input.substr(colon_pos + 1, input.length());  // get minutes    
 
+        // Convert hour and minutes to digits
+        hour_int = stoi(hour_str);
+        min_int = stoi(min_str);    
 
+        // Add default working hours (9)
+        out_hour_int = hour_int + 9;
+        out_min_int = min_int;
+
+        // Display result
+        cout << "Time-in: " << hour_int << ":" << min_int << endl;
+        cout << "Time-out: " << out_hour_int << ":" << out_min_int << endl;
+
+        // Exit for loop, we only need to process 1 positional non-argument
+        break;
+
+    }
+    
     return 0;
 }
