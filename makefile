@@ -5,4 +5,4 @@ punchtime.o: punchtime.cpp
 	g++ -c punchtime.cpp
 
 clean:
-	rm *.o punchtime
+	rm -f *.o *.exe punchtime
