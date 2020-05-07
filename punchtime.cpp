@@ -89,8 +89,24 @@ int main(int argc, char **argv)
         switch (opt)
         {           
             case 'b':
-                cout << "optarg = " << optarg << endl;
-                cout << "[] TODO: compute breaktime" << endl;
+                // Get user input
+                input = optarg;
+                
+                // Parse input, get hours and minutes
+                colon_pos = input.find(":");                            // find colon
+                hour_str = input.substr(0, colon_pos);                  // get hour
+                min_str = input.substr(colon_pos + 1, input.length());  // get minutes    
+
+                // Convert hour and minutes to digits
+                hour_int = stoi(hour_str);
+                min_int = stoi(min_str);    
+
+                // Add default working hours (1 hour 30 minutes)
+                out_hour_int = hour_int + 1;
+                out_min_int = min_int + 30;
+
+                // Display result
+                cout << "Break until: " << out_hour_int << ":" << out_min_int << endl;
                 break;
             
             case 'o':
@@ -134,7 +150,7 @@ int main(int argc, char **argv)
         out_min_int = min_int;
 
         // Display result
-        cout << "Time-in: " << hour_int << ":" << min_int << endl;
+        // cout << "Time-in: " << hour_int << ":" << min_int << endl;
         cout << "Time-out: " << out_hour_int << ":" << out_min_int << endl;
 
         // Exit for loop, we only need to process 1 positional non-argument
