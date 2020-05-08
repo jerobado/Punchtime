@@ -115,7 +115,7 @@ int main(int argc, char **argv)
                 break;
 
             case 'v':
-                cout << "0.1.1" << endl;
+                cout << "0.1.2" << endl;
                 break;
             
             case ':':
