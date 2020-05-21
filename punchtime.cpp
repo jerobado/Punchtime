@@ -142,6 +142,13 @@ int main(int argc, char **argv)
         // Convert hour and minutes to digits
         convert_input();
 
+        // Validate input
+        if ((hour_int > 23) || (min_int > 59))
+        {
+            cout << "Not a valid time-format." << endl;
+            break;
+        }
+
         // Add default working hours (9) and overtime
         out_hour_int = hour_int + 9 + overtime_int;
         out_min_int = min_int;
@@ -174,4 +181,5 @@ void convert_input()
     hour_int = stoi(hour_str);
     min_int = stoi(min_str);
 }
+
 
