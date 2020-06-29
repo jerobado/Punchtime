@@ -6,3 +6,5 @@
 *.out
 *.app
 
+# VS Code stuff
+.vscode
