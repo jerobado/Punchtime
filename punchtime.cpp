@@ -22,6 +22,10 @@ void Punchtime::setBreaktime(int h, int m, int duration_hour, int duration_minut
 
     break_hour = h + duration_hour;
     break_minute = m + duration_minute;
+
+    if (break_hour > 12)
+        break_hour -= 12;
+
     if (break_minute >= 60) {
         break_hour += 1;
         break_minute -= 60;
