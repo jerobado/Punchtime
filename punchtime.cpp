@@ -5,39 +5,38 @@ using namespace std;
 
 void Punchtime::setTimeout(int h, int m) {
 
-    hour = workingHours + h;
-    if (hour > 12)
-        hour -= 12;
-    minute = m;
+    out_hour = workingHours + h;
+    if (out_hour > 12)
+        out_hour -= 12;
+    out_minute = m;
 
 }
 
 void Punchtime::timeout() {
 
-    printf("%d:%d\n", hour, minute);
+    printf("%d:%d\n", out_hour, out_minute);
 
 }
 
 void Punchtime::setBreaktime(int h, int m, int duration_hour, int duration_minute) {
 
-    hour = h + duration_hour;
-    minute = m + duration_minute;
-    if (minute >= 60) {
-        hour += 1;
-        minute -= 60;
+    break_hour = h + duration_hour;
+    break_minute = m + duration_minute;
+    if (break_minute >= 60) {
+        break_hour += 1;
+        break_minute -= 60;
     }
 
 }
 
 void Punchtime::breaktime() {
 
-    printf("%d:%d\n", hour, minute);
+    printf("%d:%d\n", break_hour, break_minute);
 
 }
 
 void Punchtime::setOvertime(int h) {
 
-    hour = hour + h;
-    // minute = minute + m;
+    out_hour = out_hour + h;
 
 }
