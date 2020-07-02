@@ -77,12 +77,12 @@ int main(int argc, char **argv) {
         cout << "Break until: ";
         todayPunchtime.breaktime();
     }
-
-    // [] TODO: properly compute timeout when isOvertime 
+ 
     if (isOvertime) {
         
         todayPunchtime.setOvertime(stoi(overtime_str));
-        // todayPunchtime.timeout();
+        cout << "Overtime until: ";
+        todayPunchtime.timeout();
     }
 
     return 0;
