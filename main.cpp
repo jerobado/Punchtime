@@ -3,7 +3,7 @@
 #include <getopt.h>
 #include "punchtime.h"
 
-#define VERSION "0.1.x"
+#define VERSION "develop-0.1.4"
 
 using namespace std;
 
