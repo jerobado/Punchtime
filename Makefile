@@ -1,16 +1,21 @@
-# [] TODO: make this readeable as English
-# [] TODO: use x86_64-w64-mingw32-g++ command to compile for Windows 64 bit
+# Compilers
+linux-compiler = g++
+windows-compiler = x86_64-w64-mingw32-g++
 
-CC = g++
-CFLAGS = -I.
-DEPS = punchtime.h
-OBJ = punchtime.o main.o
+objects = time.o punchtime.o main.o
 
-%.o: %.c $(DEPS)
-	$(CC) -c -o $@ $< $(CFLAGS)
+# Rules
+punchtime: $(objects)
+	$(linux-compiler) -o punchtime $(objects)
 
-main: $(OBJ)
-	$(CC) -o $@ $^ $(CFLAGS)
+main.o: main.cpp punchtime.h
+	$(linux-compiler) -c main.cpp
+
+punchtime.o: punchtime.cpp punchtime.h
+	$(linux-compiler) -c punchtime.cpp 
+
+time.o: time.cpp time.h
+	$(linux-compiler) -c time.cpp
 
 clean:
-	rm -f *.o main
+	rm -f *.o punchtime
