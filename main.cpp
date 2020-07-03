@@ -2,6 +2,7 @@
 #include <string>
 #include <getopt.h>
 #include "punchtime.h"
+#include "time.h"
 
 #define VERSION "develop-0.1.4"
 
@@ -61,7 +62,8 @@ int main(int argc, char **argv) {
         hour_str = timein_str.substr(0, colon_pos);
         minute_str = timein_str.substr(colon_pos + 1, timein_str.length());
 
-        todayPunchtime.setTimeout(stoi(hour_str), stoi(minute_str));
+        Time timein(stoi(hour_str), stoi(minute_str));
+        todayPunchtime.setTimeout(timein.hour, timein.minute);
         
         cout << "Time-out: ";
         todayPunchtime.timeout();
