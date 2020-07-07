@@ -1,8 +1,8 @@
 #include <iostream>
 #include <string>
 #include <getopt.h>
-#include "punchtime.h"
-#include "time.h"
+#include "punchtime/punchtime.h"
+#include "punchtime/time.h"
 
 #define VERSION "develop-0.1.4"
 
