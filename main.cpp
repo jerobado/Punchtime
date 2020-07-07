@@ -20,6 +20,10 @@ bool isTimeIn;
 bool isBreaktime;
 bool isOvertime;
 
+// Function declaration
+void parse_input(string);
+
+
 int main(int argc, char **argv) {
 
     int opt;
@@ -58,10 +62,8 @@ int main(int argc, char **argv) {
     }
    
     if (isTimeIn) {
-        colon_pos = timein_str.find(":"); // -1 value means not found
-        hour_str = timein_str.substr(0, colon_pos);
-        minute_str = timein_str.substr(colon_pos + 1, timein_str.length());
 
+        parse_input(timein_str);
         Time timein(stoi(hour_str), stoi(minute_str));
         todayPunchtime.setTimeout(timein.hour, timein.minute);
         
@@ -70,10 +72,8 @@ int main(int argc, char **argv) {
     }
 
     if (isBreaktime) {
-        colon_pos = breaktime_str.find(":"); // -1 value means not found
-        hour_str = breaktime_str.substr(0, colon_pos);
-        minute_str = breaktime_str.substr(colon_pos + 1, breaktime_str.length());
 
+        parse_input(breaktime_str);
         todayPunchtime.setBreaktime(stoi(hour_str), stoi(minute_str), 1, 30);
 
         cout << "Break until: ";
@@ -88,4 +88,13 @@ int main(int argc, char **argv) {
     }
 
     return 0;
+}
+
+// Function definition
+void parse_input(string str) {
+
+        colon_pos = str.find(":"); // -1 value means not found
+        hour_str = str.substr(0, colon_pos);
+        minute_str = str.substr(colon_pos + 1, str.length());
+
 }
