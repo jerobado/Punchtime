@@ -10,6 +10,7 @@ build-dir = build/
 # Flags
 i-flag = -I include
 
+source = time.cpp punchtime.cpp main.cpp
 objects = time.o punchtime.o main.o
 
 # Rules
