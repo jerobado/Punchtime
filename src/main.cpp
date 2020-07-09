@@ -25,6 +25,7 @@ bool isOvertime;
 // Function declaration
 void parse_input(string);
 void convert_input(string, string);
+bool isValidTimeFormat(string);
 
 
 int main(int argc, char **argv) {
@@ -38,7 +39,8 @@ int main(int argc, char **argv) {
         switch(opt) {
             case 'b':
                 breaktime_str = optarg;
-                isBreaktime = true;
+                if (isValidTimeFormat(breaktime_str))
+                    isBreaktime = true;
                 break;
             case 'o':
                 overtime_str = optarg;
@@ -60,8 +62,10 @@ int main(int argc, char **argv) {
     for (index = optind; index < argc; index++) {
         
         timein_str = argv[index];
-        isTimeIn = true;
+        if (isValidTimeFormat(timein_str))
+            isTimeIn = true;
         break;  // exit for loop, we only need to process 1 positional argument
+
     }
    
     if (isTimeIn) {
@@ -108,5 +112,15 @@ void convert_input(string hour, string minute) {
 
     hour_int = stoi(hour);
     minute_int = stoi(minute);
+
+}
+
+bool isValidTimeFormat(string input) {
+
+    if (input.find(":") != -1)
+        return true;
+    else
+        cout << "Not a valid time format --> " << input << endl;
+        return false;
 
 }
