@@ -71,12 +71,18 @@ int main(int argc, char **argv) {
     if (isTimeIn) {
 
         parse_input(timein_str);
-        convert_input(hour_str, minute_str);
-        Time timein(hour_int, minute_int);
-        todayPunchtime.setTimeout(timein.hour, timein.minute);
-        
-        cout << "Time-out: ";
-        todayPunchtime.timeout();
+        try {
+            convert_input(hour_str, minute_str);
+            Time timein(hour_int, minute_int);
+            todayPunchtime.setTimeout(timein.hour, timein.minute);
+            
+            cout << "Time-out: ";
+            todayPunchtime.timeout();
+        }
+        catch (std::invalid_argument& e) {
+            cout << "Not a valid time format --> " << hour_str << ":" << minute_str << endl;
+        }
+
     }
 
     if (isBreaktime) {
