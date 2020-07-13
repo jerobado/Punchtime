@@ -88,11 +88,17 @@ int main(int argc, char **argv) {
     if (isBreaktime) {
 
         parse_input(breaktime_str);
-        convert_input(hour_str, minute_str);
-        todayPunchtime.setBreaktime(hour_int, minute_int, 1, 30);
+        try {
+            convert_input(hour_str, minute_str);
+            todayPunchtime.setBreaktime(hour_int, minute_int, 1, 30);
 
-        cout << "Break until: ";
-        todayPunchtime.breaktime();
+            cout << "Break until: ";
+            todayPunchtime.breaktime();
+        }
+        catch (std::invalid_argument& e) {
+            cout << "Not a valid time format --> " << hour_str << ":" << minute_str << endl;
+        }
+
     }
  
     if (isOvertime) {
