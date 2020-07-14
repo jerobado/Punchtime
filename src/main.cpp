@@ -61,16 +61,13 @@ int main(int argc, char **argv) {
 
     // Non-optional argument
     for (index = optind; index < argc; index++) {
-        
         timein_str = argv[index];
         if (isValidTimeFormat(timein_str))
             isTimeIn = true;
         break;  // exit for loop, we only need to process 1 positional argument
-
     }
    
     if (isTimeIn) {
-
         parse_input(timein_str);
         if (isValidTimeValues(hour_str, minute_str)) {
             Time timein(hour_int, minute_int);
@@ -81,11 +78,9 @@ int main(int argc, char **argv) {
         }
         else
             cout << "Not a valid time format --> " << hour_str << ":" << minute_str << endl;
-
     }
 
     if (isBreaktime) {
-
         parse_input(breaktime_str);
         if (isValidTimeValues(hour_str, minute_str)) {
             Time timein(hour_int, minute_int);
@@ -96,17 +91,14 @@ int main(int argc, char **argv) {
         }
         else
             cout << "Not a valid time format --> " << hour_str << ":" << minute_str << endl;
-
     }
  
     if (isOvertime) {
-
         if (isdigit(overtime_str[0])) {
             todayPunchtime.setOvertime(stoi(overtime_str));
             cout << "Overtime until: ";
             todayPunchtime.timeout();
         }
-
     }
 
     return 0;
