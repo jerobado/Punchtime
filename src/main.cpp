@@ -26,6 +26,7 @@ bool isOvertime;
 void parse_input(string);
 void convert_input(string, string);
 bool isValidTimeFormat(string);
+bool isValidTimeValues(string, string);
 
 
 int main(int argc, char **argv) {
@@ -71,43 +72,40 @@ int main(int argc, char **argv) {
     if (isTimeIn) {
 
         parse_input(timein_str);
-        try {
-            convert_input(hour_str, minute_str);
+        if (isValidTimeValues(hour_str, minute_str)) {
             Time timein(hour_int, minute_int);
             todayPunchtime.setTimeout(timein.hour, timein.minute);
             
             cout << "Time-out: ";
             todayPunchtime.timeout();
         }
-        catch (std::invalid_argument& e) {
+        else
             cout << "Not a valid time format --> " << hour_str << ":" << minute_str << endl;
-        }
 
     }
 
     if (isBreaktime) {
 
         parse_input(breaktime_str);
-        try {
-            convert_input(hour_str, minute_str);
-            todayPunchtime.setBreaktime(hour_int, minute_int, 1, 30);
-
-            cout << "Break until: ";
-            todayPunchtime.breaktime();
+        if (isValidTimeValues(hour_str, minute_str)) {
+            Time timein(hour_int, minute_int);
+            todayPunchtime.setTimeout(timein.hour, timein.minute);
+            
+            cout << "Time-out: ";
+            todayPunchtime.timeout();
         }
-        catch (std::invalid_argument& e) {
+        else
             cout << "Not a valid time format --> " << hour_str << ":" << minute_str << endl;
-        }
 
     }
  
     if (isOvertime) {
-        
+
         if (isdigit(overtime_str[0])) {
-        todayPunchtime.setOvertime(stoi(overtime_str));
-        cout << "Overtime until: ";
-        todayPunchtime.timeout();
-    }
+            todayPunchtime.setOvertime(stoi(overtime_str));
+            cout << "Overtime until: ";
+            todayPunchtime.timeout();
+        }
 
     }
 
@@ -136,6 +134,17 @@ bool isValidTimeFormat(string input) {
         return true;
     else
         cout << "Not a valid time format --> " << input << endl;
+        return false;
+
+}
+
+bool isValidTimeValues(string hour, string minute) {
+
+    if (isdigit(hour_str[0]) && isdigit(minute_str[0])) {
+        convert_input(hour, minute);
+        return true;
+    }
+    else
         return false;
 
 }
