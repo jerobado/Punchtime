@@ -103,9 +103,12 @@ int main(int argc, char **argv) {
  
     if (isOvertime) {
         
+        if (isdigit(overtime_str[0])) {
         todayPunchtime.setOvertime(stoi(overtime_str));
         cout << "Overtime until: ";
         todayPunchtime.timeout();
+    }
+
     }
 
     return 0;
