@@ -14,7 +14,11 @@ void Punchtime::setTimeout(int h, int m) {
 
 void Punchtime::timeout() {
 
-    printf("%d:%d\n", out_hour, out_minute);
+    if (out_minute >= 0 && out_minute <= 9) {
+        printf("%d:0%d\n", out_hour, out_minute);
+    }
+    else
+        printf("%d:%d\n", out_hour, out_minute);
 
 }
 
@@ -35,7 +39,11 @@ void Punchtime::setBreaktime(int h, int m, int duration_hour, int duration_minut
 
 void Punchtime::breaktime() {
 
-    printf("%d:%d\n", break_hour, break_minute);
+    if (break_minute >= 0 && break_minute <= 9) {
+        printf("%d:0%d\n", break_hour, break_minute);
+    }
+    else
+        printf("%d:%d\n", break_hour, break_minute);
 
 }
 
