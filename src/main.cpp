@@ -83,11 +83,9 @@ int main(int argc, char **argv) {
     if (isBreaktime) {
         parse_input(breaktime_str);
         if (isValidTimeValues(hour_str, minute_str)) {
-            Time timein(hour_int, minute_int);
-            todayPunchtime.setTimeout(timein.hour, timein.minute);
-            
-            cout << "Time-out: ";
-            todayPunchtime.timeout();
+            todayPunchtime.setBreaktime(hour_int, minute_int, 1, 30);
+            cout << "Break until: ";
+            todayPunchtime.breaktime();
         }
         else
             cout << "Not a valid time format --> " << hour_str << ":" << minute_str << endl;
