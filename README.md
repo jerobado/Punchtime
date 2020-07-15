@@ -6,14 +6,15 @@ Usage
 ---
 ```
 $ punchtime 7:47    # time-in
-Time-out: 16:47
+Time-out: 4:47
 
 $ punchtime 7:47 -b 11:00   # time-in with breaktime (-b), break is 1 hour 30 minutes
+Time-out: 4:47
 Break until: 12:30
-Time-out: 16:47
 
 $ punchtime 7:47 -b 11:00 -o 1  # time-in with breaktime and 1 hour overtime (-o)
+Time-out: 4:47
 Break until: 12:30
-Time-out: 17:47
+Overtime until: 5:47
 ```
 
