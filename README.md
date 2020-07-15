@@ -18,3 +18,9 @@ Break until: 12:30
 Overtime until: 5:47
 ```
 
+Build from source
+---
+```
+$ make              # build using make
+$ ./punchtime -v    # run the program by displaying the version number
+```
