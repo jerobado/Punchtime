@@ -27,4 +27,7 @@ time.o: $(src-dir)time.cpp $(punchtime-dir)time.h
 	$(linux-compiler) $(i-flag) -c $(src-dir)time.cpp
 
 clean:
-	rm -f *.o punchtime
+	rm -f *.o punchtime test_result
+
+test:
+	g++ -I /usr/local/boost_1_73_0 -I include tests/test_all.cpp -o test_result
