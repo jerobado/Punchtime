@@ -4,7 +4,7 @@
 #include "punchtime/punchtime.h"
 #include "punchtime/time.h"
 
-#define VERSION "develop-0.1.4"
+#define VERSION "0.1.4"
 
 using namespace std;
 
