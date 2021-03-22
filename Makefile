@@ -1,7 +1,7 @@
 # Compilers
 ifeq ($(OS),Windows_NT)
 	CXX=x86_64-w64-mingw32-g++
-	target=punchtime.exe`
+	target=punchtime.exe
 else
 	CXX=g++
 	target=punchtime
