@@ -5,6 +5,7 @@
 *.exe
 *.out
 *.app
+punchtime
 
 # VS Code stuff
 .vscode
